@@ -1,6 +1,7 @@
 package kinotek.kinotek_backend.model.cinema;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +14,7 @@ public class Seat {
 
     @ManyToOne
     @JoinColumn(name = "row_id")
-    @JsonBackReference("row-seats")
+    @JsonManagedReference("row-seats")
     private SeatRow row;
 
     private int seatNumber;

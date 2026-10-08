@@ -1,5 +1,6 @@
 package kinotek.kinotek_backend.model.cinema;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +21,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "invoice", referencedColumnName = "invoice_id")
+    @JsonBackReference("invoice-bookings")
     private Invoice invoice;
 
     //GETTERS

@@ -1,6 +1,7 @@
 package kinotek.kinotek_backend.model.cinema;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Showing {
 
     @ManyToOne
     @JoinColumn(name = "movie", referencedColumnName = "movie_id")
+    @JsonManagedReference
     private Movie movie;
 
 

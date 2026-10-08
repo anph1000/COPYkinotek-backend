@@ -1,6 +1,8 @@
 package kinotek.kinotek_backend.model.cinema;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -15,8 +17,8 @@ public class AgeRating {
     private String ageRating;
 
     //One to many
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ageRating")
-    @JsonBackReference
+    @OneToMany(mappedBy = "ageRating")
+    @JsonIgnore
     private Set<Movie> movies = new HashSet<>();
 
     public int getId() {

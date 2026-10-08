@@ -1,6 +1,7 @@
 package kinotek.kinotek_backend.model.cinema;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Genre {
     private String genreName;
 
     @ManyToMany(mappedBy = "genres")
+    @JsonIgnore
     private Set<Movie> movies;
 
 

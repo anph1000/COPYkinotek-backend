@@ -1,0 +1,9 @@
+.seat input {
+    position: absolute;
+    opacity: 0;
+}
+.seat label { display: inline-block; width: 2rem; background: var(--off-white); color: var(--rich-black); }
+.seat input:checked + label  { background: var(--yellow); }
+.seat input:disabled + label { background: var(--crimson); }
+.seat input:focus-visible + label { outline: 2px solid var(--white); }
+fieldset { display: flex; gap: 4px; border: 0; }

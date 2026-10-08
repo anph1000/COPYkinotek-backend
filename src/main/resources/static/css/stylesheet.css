@@ -1,0 +1,105 @@
+/* ------ RESET ------- */
+
+:root {
+    --rich-black: rgb(17, 9, 7);
+    --crimson: hsl(0, 68%, 43%);
+    --off-white: hsl(0, 0%, 88%);
+    --yellow: hsl(45, 100%, 54%);
+    --white: hsl(0, 0%, 100%);
+    --bordeaux: hsl(0, 71%, 15%);
+
+    --font-family: "Inter", sans-serif;
+
+    --section-heading: 40px;
+    --font-size-large: 22px;
+    --font-size-medium: 17px;
+    --font-size-small: 14px;
+    --font-size-extra-small: 12px;
+
+}
+
+*{
+    margin: auto;
+    padding: auto;
+    transition: all .5s ease;
+}
+
+*, *::before, *::after {box-sizing: border-box;}
+
+html{ font-family: var(--font-family);}
+
+
+/* ------- TEXT -------- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--white);
+    text-wrap: balance;
+
+}
+
+span, p {
+    text-wrap: wrap;
+    color: var(--off-white);
+}
+
+/* -------- NAV ------- */
+
+nav {
+    margin: 4px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bordeaux);
+
+}
+
+.navigation {
+
+
+}
+
+.logo {
+    justify-content: left;
+}
+
+/* -------- INDHOLD ------- */
+
+body{
+    background: var(--rich-black);
+    color: var(--off-white);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ----- INTERAKTIVE ELEMENTER ------ */
+
+/* sørger for alle knapper arver font fra form */
+input, button, textarea, select {
+  font: inherit;
+  background-color: var(--off-white);
+  color: var(var(--bordeaux));
+  border: none;
+  box-shadow: 2px;
+  padding: 10px;
+  margin: 5px;
+}
+
+/* ----- SÆDER ------ */
+
+
+/* -- MOVIE --- */
+
+.movie-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.movie-list img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--yellow);
+}

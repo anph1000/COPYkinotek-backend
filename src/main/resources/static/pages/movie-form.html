@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create movie</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+<nav>
+    <span class="logo">Logo</span>
+    <ul class="navigation">
+        <li>NavTest</li>
+    </ul>
+</nav>
+
+<body>
+<h3>Create movie</h3>
+<form action="http://localhost:8080/movie/create" method="post" id="formMovie">
+    <label for="title">Title</label>
+    <input id="title" type="text" placeholder="Title"/>
+    <br>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="5" cols="50" placeholder="description"></textarea>
+    <br>
+
+    <label for="duration">Runtime</label>
+    <input id="duration" type="number" placeholder="Runtime in minutes"></input>
+    <br>
+
+    <label for="genre">Genre</label>
+    <select id="genre" name="genre" multiple></select>
+    <br>
+
+    <label for="ageRating">Age rating</label>
+    <select id="ageRating" name="ageRating"></select>
+    <br>
+
+    <label for="imdbRef">IMDB link</label>
+    <input id="imdbRef" name="imdbRef" type="url" placeholder="www.imdb.com">
+    <button id="btnCreate" type="submit">Create movie</button>
+</form>
+
+<script type="module" src="js/movieForm.js"></script>
+</body>
+</html>

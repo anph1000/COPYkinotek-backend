@@ -1,5 +1,6 @@
 package kinotek.kinotek_backend.model.cinema;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import kinotek.kinotek_backend.model.user.Customer;
 
@@ -17,10 +18,12 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name = "customer", referencedColumnName = "customer_id")
+    @JsonManagedReference
     private Customer customer;
     private LocalDateTime purchaseTime;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "invoice")
+    @JsonManagedReference("invoice-bookings")
     private Set<Booking> bookings = new HashSet<>();
 
     public int getId() {

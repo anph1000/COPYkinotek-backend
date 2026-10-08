@@ -1,5 +1,6 @@
 package kinotek.kinotek_backend.model.cinema;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.ArrayList;
@@ -15,12 +16,14 @@ public class SeatRow {
 
     @ManyToOne
     @JoinColumn(name = "auditorium_id")
+    @JsonBackReference("auditorium-rows")
     private Auditorium auditorium;
 
     private String rowLetter;
 
     @OneToMany(mappedBy = "row", cascade = CascadeType.ALL)
     @OrderBy("seatNumber ASC")
+    @JsonBackReference("row-seats")
     private List<Seat> seats = new ArrayList<>();
 
     public void addSeat(Seat seat) {

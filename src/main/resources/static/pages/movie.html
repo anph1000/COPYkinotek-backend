@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kinotek</title>
+  <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+<body>
+<header>
+  <nav aria-label="Hovednavigation">
+    <a class="logo" href="../index.html">Kinotek</a>
+  </nav>
+</header>
+<main>
+  <article>
+    <h1 id="movie-title"></h1>
+    <p id="movie-meta"></p>
+    <p id="movie-description"></p>
+  </article>
+  <section aria-labelledby="showings-heading">
+    <h2 id="showings-heading">Kommende forestillinger</h2>
+    <div id="showing-list"></div>
+  </section>
+  <p id="status" role="status"></p>
+</main>
+<script type="module" src="../js/movie.js"></script>
+</body>
+</html>

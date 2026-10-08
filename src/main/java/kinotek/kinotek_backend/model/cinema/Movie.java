@@ -1,6 +1,7 @@
 package kinotek.kinotek_backend.model.cinema;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -34,7 +35,6 @@ public class Movie {
     private Set<Genre> genres;
 
     @OneToMany(mappedBy = "movie")
-    @JsonBackReference
     private Set<Showing> showings;
 
     //getters and setters
