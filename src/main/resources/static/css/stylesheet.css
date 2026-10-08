@@ -103,3 +103,52 @@ input, button, textarea, select {
 a {
     color: var(--yellow);
 }
+
+/* -- MOVIE ADMIN --- */
+
+.movie-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 40rem;
+}
+
+.movie-form label {
+    margin: 0.75rem 0 0;
+}
+
+.movie-form input,
+.movie-form textarea,
+.movie-form select,
+.movie-form button {
+    margin: 0.25rem 0 0;
+}
+
+.movie-form option:checked {
+    background-color: var(--yellow);
+    color: var(--rich-black);
+}
+
+.movie-form button {
+    margin-top: 1.5rem;
+    align-self: flex-start;
+}
+
+.movie-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.movie-table th,
+.movie-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--bordeaux);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}

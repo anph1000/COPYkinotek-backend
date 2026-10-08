@@ -2,9 +2,11 @@ package kinotek.kinotek_backend.controller;
 
 
 import kinotek.kinotek_backend.dto.MovieDTO;
+import kinotek.kinotek_backend.dto.MovieShowingDto;
 import kinotek.kinotek_backend.model.cinema.AgeRating;
 import kinotek.kinotek_backend.model.cinema.Genre;
 import kinotek.kinotek_backend.service.MovieService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,17 +31,24 @@ public class MovieRestController {
         return movieService.getMovieById(id);
     }
 
+    @GetMapping("/{id}/showings")
+    public List<MovieShowingDto> getUpcomingShowings(@PathVariable int id) {
+        return movieService.getUpcomingShowings(id);
+    }
+
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public MovieDTO saveMovie(@RequestBody MovieDTO dto) {
         return movieService.saveMovie(dto);
     }
 
-    @PostMapping("/{id}/update")
+    @PutMapping("/{id}")
     public MovieDTO updateMovie(@PathVariable int id, @RequestBody MovieDTO dto) {
         return movieService.updateMovie(id, dto);
     }
 
-    @PostMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteMovieById(@PathVariable int id) {
         movieService.deleteMovieById(id);
     }

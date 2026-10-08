@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrer film – Kinotek</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+<body>
+<header>
+    <nav aria-label="Hovednavigation">
+        <a class="logo" href="../index.html">Kinotek</a>
+        <a href="movie-admin.html" aria-current="page">Administrer film</a>
+    </nav>
+</header>
+<main>
+    <h1>Administrer film</h1>
+    <p><a href="movie-form.html">+ Opret film</a></p>
+    <table class="movie-table">
+        <thead>
+        <tr>
+            <th scope="col">Titel</th>
+            <th scope="col">Info</th>
+            <th scope="col"><span class="visually-hidden">Handlinger</span></th>
+        </tr>
+        </thead>
+        <tbody id="movie-rows"></tbody>
+    </table>
+    <p id="status" role="status"></p>
+</main>
+<script type="module" src="../js/movieAdmin.js"></script>
+</body>
+</html>

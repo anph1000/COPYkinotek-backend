@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Create movie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Opret film – Kinotek</title>
     <link rel="stylesheet" href="../css/stylesheet.css">
 </head>
-<nav>
-    <span class="logo">Logo</span>
-    <ul class="navigation">
-        <li>NavTest</li>
-    </ul>
-</nav>
-
 <body>
-<h3>Create movie</h3>
-<form action="http://localhost:8080/movie/create" method="post" id="formMovie">
-    <label for="title">Title</label>
-    <input id="title" type="text" placeholder="Title"/>
-    <br>
+<header>
+    <nav aria-label="Hovednavigation">
+        <a class="logo" href="../index.html">Kinotek</a>
+        <a href="movie-admin.html">Administrer film</a>
+    </nav>
+</header>
+<main>
+    <h1 id="form-heading">Opret film</h1>
+    <form id="movie-form" class="movie-form">
+        <label for="title">Titel</label>
+        <input id="title" name="title" type="text" required>
 
-    <label for="description">Description</label>
-    <textarea id="description" name="description" rows="5" cols="50" placeholder="description"></textarea>
-    <br>
+        <label for="description">Beskrivelse</label>
+        <textarea id="description" name="description" rows="5"></textarea>
 
-    <label for="duration">Runtime</label>
-    <input id="duration" type="number" placeholder="Runtime in minutes"></input>
-    <br>
+        <label for="duration">Spilletid (minutter)</label>
+        <input id="duration" name="duration" type="number" min="1" required>
 
-    <label for="genre">Genre</label>
-    <select id="genre" name="genre" multiple></select>
-    <br>
+        <label for="genre">Genrer (hold Ctrl/Cmd for at vælge flere)</label>
+        <select id="genre" name="genre" multiple size="8"></select>
 
-    <label for="ageRating">Age rating</label>
-    <select id="ageRating" name="ageRating"></select>
-    <br>
+        <label for="ageRating">Aldersgrænse</label>
+        <select id="ageRating" name="ageRating" required></select>
 
-    <label for="imdbRef">IMDB link</label>
-    <input id="imdbRef" name="imdbRef" type="url" placeholder="www.imdb.com">
-    <button id="btnCreate" type="submit">Create movie</button>
-</form>
+        <label for="imageRef">Plakat (billed-URL)</label>
+        <input id="imageRef" name="imageRef" type="url" placeholder="https://...">
 
-<script type="module" src="js/movieForm.js"></script>
+        <label for="imdbRef">IMDb-link</label>
+        <input id="imdbRef" name="imdbRef" type="url" placeholder="https://www.imdb.com/title/...">
+
+        <button id="btn-submit" type="submit">Opret film</button>
+    </form>
+    <p id="status" role="status"></p>
+</main>
+<script type="module" src="../js/movieForm.js"></script>
 </body>
 </html>

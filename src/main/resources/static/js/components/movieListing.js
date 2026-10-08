@@ -41,6 +41,13 @@ function createTitle(movie) {
 
 function createMeta(movie) {
     const meta = document.createElement("p");
-    meta.textContent = `${movie.ageRating} · ${movie.duration} min · ${movie.genres.join(", ")}`;
+    meta.textContent = movieMeta(movie);
     return meta;
+}
+
+// fx "11 · 120 min · Action, Drama"
+export function movieMeta(movie) {
+    return [movie.ageRating, `${movie.duration} min`, movie.genres.join(", ")]
+        .filter(Boolean)
+        .join(" · ");
 }

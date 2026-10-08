@@ -1,31 +1,22 @@
-
-const genreSelect = document.getElementById("genre");
-const genres = ["action", "adventure", "horror"] //harcoded for MVP
-
-//fill dropdown with objects of genres fetched from api
-function fillDropdownGenres(item) {
-    const element = document.createElement("option")
-    element.textContent = item
-    element.value = item
-    genreSelect.appendChild(element)
+// fylder genre-listen (multiple select) med data fra /api/movies/genres
+export function populateGenreDropDown(select, genres) {
+    const sorted = [...genres].sort((a, b) => a.genreName.localeCompare(b.genreName, "da"));
+    select.replaceChildren(...sorted.map(createOption));
 }
 
-function populateGenreDropDown() {
-    genres.forEach(fillDropdownGenres)
-}
-populateGenreDropDown()
-
-//set genre to selected option
-
-let movieGenre = ""
-
-function setMovieGenre() {
-    const selIndex = genreSelect.selectedIndex
-    const selOption = genreSelect.options[selIndex]
-    const selGenre = selOption.innerText
-    movieGenre = selGenre
-    console.log(movieGenre)
+function createOption(genre) {
+    const option = document.createElement("option");
+    option.value = genre.id;
+    option.textContent = genre.genreName;
+    return option;
 }
 
-export {setMovieGenre}
-export {populateGenreDropDown}
+export function selectedGenreIds(select) {
+    return [...select.selectedOptions].map(option => Number(option.value));
+}
+
+export function selectGenres(select, genreIds) {
+    [...select.options].forEach(option => {
+        option.selected = genreIds.includes(Number(option.value));
+    });
+}

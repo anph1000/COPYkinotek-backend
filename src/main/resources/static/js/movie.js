@@ -1,5 +1,6 @@
 import { fetchMovie, fetchUpcomingShowings } from "./api/movieApi.js";
 import { renderShowings } from "./components/showingList.js";
+import { movieMeta } from "./components/movieListing.js";
 
 const movieId = new URLSearchParams(location.search).get("movie");
 const status = document.querySelector("#status");
@@ -23,7 +24,6 @@ async function init() {
 function renderMovieInfo(movie) {
     document.title = `${movie.movieName} – Kinotek`;
     document.querySelector("#movie-title").textContent = movie.movieName;
-    document.querySelector("#movie-meta").textContent =
-        `${movie.ageRating} · ${movie.duration} min · ${movie.genres.join(", ")}`;
+    document.querySelector("#movie-meta").textContent = movieMeta(movie);
     document.querySelector("#movie-description").textContent = movie.description;
 }
