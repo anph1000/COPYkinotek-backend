@@ -1,0 +1,23 @@
+name: release
+
+on:
+  push:
+    branches:
+      [main]
+
+jobs:
+  maven-test:
+    uses: ./.github/workflows/maven-test.yaml
+
+#  docker-test:
+#    needs: maven-test
+ #   secrets:
+  #    TEST_SECRETS: ${{ secrets.TEST_SECRETS }}
+   # uses: ./.github/workflows/docker-test.yaml
+
+  push-ghcr:
+   # needs: docker-test
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/push-GHCR.yaml

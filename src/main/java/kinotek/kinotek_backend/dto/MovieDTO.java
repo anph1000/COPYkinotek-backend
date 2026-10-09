@@ -10,6 +10,9 @@ public record MovieDTO (
         String imdbRef,
         String imageRef,
         int ageRatingId,
-        List<Integer> genreIds) {
+        List<Integer> genreIds,
+        String ageRating,
+        List<String> genres
+        ) {
 
 }

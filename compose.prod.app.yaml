@@ -1,18 +1,17 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    networks:
+      - app
+    image: ghcr.io/gruppe-1-kinotek/kinotek-backend/backend:latest
+    restart: unless-stopped
     environment:
+      APP_GIT_SHA: ${RELEASE_TAG}
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
     ports:
       - "127.0.0.1:8081:8081"
-    networks:
-      - prod-network
     healthcheck:
       test: [ "CMD-SHELL", "wget -qO- http://localhost:8081/actuator/health >/dev/null 2>&1 || exit 1" ]
       interval: 15s
@@ -20,3 +19,22 @@ services:
       retries: 3
       start_period: 30s
 
+  frontend:
+    networks:
+      - frontend
+    image: ghcr.io/gruppe-1-kinotek/kinotek-frontend/frontend:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      app:
+        condition: service_healthy
+
+networks:
+  app:
+    driver: bridge
+  db:
+    driver: bridge
+  frontend:
+    driver: bridge

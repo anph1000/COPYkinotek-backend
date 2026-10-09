@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Vælg sæder – Kinotek</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+    <link rel="stylesheet" href="../css/components/seats.css">
+</head>
+<body>
+<main>
+    <h1 id="movie-title"></h1>
+    <div class="screen">Lærred</div> <!--- stjålet lærred grafik for sjov -> kan slettes --->
+
+    <form id="seat-form">
+        <div id="seat-map"></div>
+
+        <ul class="seat-legend" aria-label="Forklaring">
+            <li data-state="free">Ledig</li>
+            <li data-state="selected">Valgt</li>
+            <li data-state="booked">Optaget</li>
+            <li data-state="access">Handicap</li>
+        </ul>
+
+        <output for="seat-form" id="selection-summary">Ingen sæder valgt</output>
+
+        <input type="email" name="email" placeholder="Indtast e-mail" id="inputEmail" required>
+        <button type="submit">Book sæder</button>
+    </form>
+</main>
+<script type="module" src="../js/booking.js"></script>
+</body>
+</html>

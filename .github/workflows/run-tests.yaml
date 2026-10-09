@@ -1,0 +1,19 @@
+name: run-tests
+
+on:
+  pull_request:
+    branches:
+      [ main, dev ]
+  push:
+    branches:
+      [ main, dev ]
+
+jobs:
+  maven-test:
+    uses: ./.github/workflows/maven-test.yaml
+
+#  docker-test:
+#    needs: maven-test
+#    uses: ./.github/workflows/docker-test.yaml
+#    secrets:
+#      TEST_SECRETS: ${{ secrets.TEST_SECRETS }}

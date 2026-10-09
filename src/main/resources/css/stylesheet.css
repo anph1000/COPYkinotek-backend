@@ -1,0 +1,194 @@
+/* ------ TOKENS ------- */
+
+:root {
+    --rich-black: rgb(17, 9, 7);
+    --surface: hsl(0, 25%, 11%);
+    --bordeaux: hsl(0, 71%, 15%);
+    --crimson: hsl(0, 68%, 43%);
+    --yellow: hsl(45, 100%, 54%);
+    --white: hsl(0, 0%, 100%);
+    --off-white: hsl(0, 0%, 88%);
+    --muted: hsl(0, 0%, 64%);
+
+    --font-family: "Inter", system-ui, sans-serif;
+    --font-size-large: 22px;
+    --font-size-medium: 17px;
+    --font-size-small: 14px;
+    --font-size-extra-small: 12px;
+
+    --radius: 6px;
+    --page-width: 64rem;
+
+}
+/* ------ RESET ------ */
+
+* { margin: 0; }
+*, *::before, *::after {box-sizing: border-box;}
+
+html{ font-family: var(--font-family);}
+
+body {
+    min-height: 100vh;
+    background: var(--rich-black);
+    color: var(--off-white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ------ LAYOUT ------ */
+main {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* spacing mellem forældre og børn */
+main > * + * { margin-top: 1rem; }
+main > article > * + * { margin-top: .5rem; }
+
+/* ------- TEXT -------- */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--white);
+    text-wrap: balance;
+    line-height: 1.2;
+
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h2 { font-size: var(--font-size-large); }
+
+
+a { color: var(--yellow); }
+a:hover { color: var(--white); }
+
+
+#movie-meta, [role="status"] { color: var(--muted); }
+
+span, p {
+    text-wrap: wrap;
+    color: var(--off-white);
+}
+
+/* ------ HEADER / NAV (bor i js/components/nav.js) ------ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bordeaux);
+    border-bottom: 2px solid var(--yellow);
+}
+
+.site-header nav {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: .75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.site-header a {
+    color: var(--off-white);
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.site-header a:hover,
+.site-header a[aria-current="page"] { color: var(--yellow); }
+
+.site-header .logo {
+    color: var(--yellow);
+    font-size: var(--font-size-large);
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+/* ----- INTERAKTIVE ELEMENTER ------ */
+
+/* ------ FORMS ------ */
+input, button, textarea, select {
+    font: inherit;
+    padding: .6rem .8rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    background: var(--off-white);
+    color: var(--rich-black);
+}
+
+input:focus-visible, button:focus-visible,
+textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--yellow);
+    outline-offset: 2px;
+}
+
+button {
+    background: var(--yellow);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+button:hover:not(:disabled) { background: var(--white); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+
+label { display: block; }
+
+#formMovie {
+    display: grid;
+    gap: .5rem;
+    max-width: 32rem;
+}
+
+#formMovie label { margin-top: .75rem; }
+
+output { display: block; color: var(--yellow); }
+
+
+/* -- MOVIE --- */
+.movie-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.movie-list article {
+    height: 100%;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    transition: border-color .2s ease;
+}
+
+.movie-list article:hover { border-color: var(--yellow); }
+
+.movie-list a { display: block; color: var(--white); text-decoration: none; }
+
+.movie-list img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.movie-list h2 { padding: .75rem .75rem 0; font-size: var(--font-size-medium); }
+
+.movie-list article > p {
+    padding: .25rem .75rem .75rem;
+    font-size: var(--font-size-small);
+    color: var(--muted);
+}
+
+.movie-poster { max-width: 250px; height: auto;
+}

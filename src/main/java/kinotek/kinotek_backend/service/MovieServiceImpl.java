@@ -9,6 +9,7 @@ import kinotek.kinotek_backend.repository.cinema.GenreRepository;
 import kinotek.kinotek_backend.repository.cinema.MovieRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,12 +30,20 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<MovieDTO> getMovies() {
         List<MovieDTO> result = new ArrayList<>();
-        for(Movie movie : movieRepository.findAll()) {
+        for (Movie movie : movieRepository.findAll()) {
             result.add(toDTO(movie));
         }
         return result;
     }
 
+    @Override
+    public List<MovieDTO> getNowPlayingMovies() {
+        List<MovieDTO> result = new ArrayList<>();
+        for (Movie movie : movieRepository.findNowPlaying(LocalDateTime.now())) {
+            result.add(toDTO(movie));
+        }
+        return result;
+    }
 
     @Override
     public MovieDTO getMovieById(int id) {
@@ -44,7 +53,8 @@ public class MovieServiceImpl implements MovieService {
         }
         return toDTO(movie);
     }
-//id(0), så den starter på en ny film
+
+    //id(0), så den starter på en ny film
     @Override
     public MovieDTO saveMovie(MovieDTO dto) {
         Movie movie = toEntity(dto);
@@ -92,24 +102,29 @@ public class MovieServiceImpl implements MovieService {
     //Entity -> DTO
     private MovieDTO toDTO(Movie movie) {
         List<Integer> genreIds = new ArrayList<>();
+        List<String> genreNames = new ArrayList<>();
         for (Genre genre : movie.getGenres()) {
             genreIds.add(genre.getId());
+            genreNames.add(genre.getGenreName());
         }
 
         int ageRatingId = 0;
+        String ageRatingName = null;
         if (movie.getAgeRating() != null) {
             ageRatingId = movie.getAgeRating().getId();
+            ageRatingName = movie.getAgeRating().getAgeRating();
         }
 
-        return new MovieDTO(
-                movie.getId(),
+        return new MovieDTO(movie.getId(),
                 movie.getMovieName(),
                 movie.getDuration(),
                 movie.getDescription(),
                 movie.getImdbRef(),
                 movie.getImageRef(),
-                movie.getAgeRating().getId(),
-                genreIds
-        );
+                ageRatingId,
+                genreIds,
+                ageRatingName,
+                genreNames);
+
     }
 }

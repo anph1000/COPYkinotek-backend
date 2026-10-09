@@ -67,4 +67,8 @@ public class Invoice {
                 ", bookings=" + bookings +
                 '}';
     }
+
+    public void set() {
+        
+    }
 }

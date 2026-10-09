@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kinotek</title>
+  <link rel="stylesheet" href="../css/stylesheet.css">
+  <link rel="stylesheet" href="../css/components/calendar.css">
+</head>
+<body>
+<main>
+  <article>
+    <h1 id="movie-title"></h1>
+    <p id="movie-meta"></p>
+    <p id="movie-description"></p>
+  </article>
+  <section id="calendar-section" aria-labelledby="calendar-heading">
+    <h2 id="calendar-heading">Kommende forestillinger</h2>
+    <nav aria-label="Vælg måned">
+      <button type="button" id="prev-month">Forrige måned</button>
+      <button type="button" id="next-month">Næste måned</button>
+    </nav>
+    <table id="calendar"></table>
+  </section>
+  <p id="status" role="status"></p>
+</main>
+<script type="module" src="../js/movie.js"></script>
+</body>
+</html>

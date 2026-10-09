@@ -1,0 +1,31 @@
+name: docker-test.yaml
+on:
+  workflow_call:
+    secrets:
+      TEST_SECRETS:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1, 2026-07-17
+
+      - name: Create .env
+        run: |
+          echo "${{secrets.TEST_SECRETS}}" >> .env
+
+      - name: Run Docker
+        run: |
+          # Run the container in detached mode
+          docker compose -f compose.test.yaml up -d
+          
+          # Wait for a few seconds to ensure the container is up and running
+          sleep 20
+
+          # Test the application endpoint
+          curl -f https://127.0.0.1:8081/actuator/health || exit 1
+
+          # Stop and remove the container
+          docker compose -f compose.test.yaml down

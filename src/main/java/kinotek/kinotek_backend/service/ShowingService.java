@@ -1,5 +1,6 @@
 package kinotek.kinotek_backend.service;
 
+import kinotek.kinotek_backend.dto.ShowingDTO;
 import kinotek.kinotek_backend.model.cinema.Movie;
 import kinotek.kinotek_backend.model.cinema.Showing;
 
@@ -12,13 +13,12 @@ public interface ShowingService {
 
     List<Showing> findAllShowing();
     Showing findShowingById(int id);
-    List<Showing> findShowingByMovieAndDate(Movie movie, LocalDate dateToFind);
-    List<Showing> findShowingByMovie(Movie movie);
+    List<Showing> findShowingByMovieAndDate(int movie_id, LocalDate dateToFind);
+    List<Showing> findShowingByMovie(int movie_id);
     List<Showing> findUpcomingShowing();
-    void saveShowing(Showing showing);
+    List<ShowingDTO> findUpcomingShowingByMovie(int movie_id);
+    void saveShowing(ShowingDTO showingDTO);
     void deleteShowing(Showing showing);
     void deleteShowingById(int id);
-
-    public SeatMapDto getSeatMap(int showingId);
 
 }

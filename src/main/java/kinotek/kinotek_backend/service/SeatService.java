@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface SeatService {
 
+    public Seat findBySeatId(int id);
+
 }

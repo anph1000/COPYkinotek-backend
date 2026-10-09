@@ -1,0 +1,128 @@
+:root {
+    --seat-free: var(--off-white);
+    --seat-hover: hsl(45, 100%, 82%);
+    --seat-selected: var(--yellow);
+    --seat-booked: var(--crimson);
+    --seat-accessible: hsl(210, 65%, 62%);
+}
+
+/* ------ SCREEN ------ */
+.screen {
+    width: 70%;
+    margin: 1rem auto 2.5rem;
+    padding-top: .25rem;
+    text-align: center;
+    font-size: var(--font-size-extra-small);
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 4px solid var(--off-white);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    background: linear-gradient(to bottom, rgb(255 255 255 / .15), transparent);
+    box-shadow: 0 -10px 30px rgb(255 255 255 / .1);
+}
+
+/* ------ SEAT MAP ------ */
+#seat-form { display: grid; gap: 1rem; }
+
+#seat-map { overflow-x: auto; padding-bottom: .5rem; }
+
+#seat-map fieldset {
+    display: flex;
+    gap: 6px;
+    width: max-content;
+    margin: 0 auto 6px;
+    padding: 0;
+    border: 0;
+}
+
+/* ------ SEAT ------ */
+.seat { position: relative; }
+
+.seat input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.seat label {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 2rem;
+    background: var(--seat-free);
+    color: var(--rich-black);
+    font-size: .65rem;
+    font-weight: 600;
+    border-radius: .7rem .7rem .3rem .3rem;       /* backrest */
+    box-shadow: inset 0 -.45rem 0 rgb(0 0 0 / .18); /* cushion */
+    user-select: none;
+    transition: background .15s ease;
+}
+
+/* armrests */
+.seat label::before,
+.seat label::after {
+    content: "";
+    position: absolute;
+    bottom: .1rem;
+    width: .2rem;
+    height: .9rem;
+    border-radius: .1rem;
+    background: inherit;
+    filter: brightness(.75);
+}
+.seat label::before { left: -.2rem; }
+.seat label::after  { right: -.2rem; }
+
+/* ------ STATES ------ */
+.seat input[data-accessible="true"] + label { background: var(--seat-accessible); }
+
+.seat input:hover:not(:disabled) + label { background: var(--seat-hover); }
+.seat input:checked + label { background: var(--seat-selected); }
+
+.seat input:disabled { cursor: not-allowed; }
+.seat input:disabled + label {
+    background: var(--seat-booked);
+    color: rgb(255 255 255 / .6);
+}
+
+.seat input:focus-visible + label { outline: 2px solid var(--white); outline-offset: 3px; }
+
+/* ------ LEGEND (colour key) ------ */
+.seat-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+    font-size: var(--font-size-small);
+    color: var(--muted);
+}
+
+.seat-legend li::before {
+    content: "";
+    display: inline-block;
+    width: .9rem;
+    height: .9rem;
+    margin-right: .4rem;
+    vertical-align: -.1rem;
+    border-radius: .3rem .3rem .1rem .1rem;
+    background: var(--swatch);
+}
+
+.seat-legend [data-state="free"]     { --swatch: var(--seat-free); }
+.seat-legend [data-state="selected"] { --swatch: var(--seat-selected); }
+.seat-legend [data-state="booked"]   { --swatch: var(--seat-booked); }
+.seat-legend [data-state="access"]   { --swatch: var(--seat-accessible); }
+
+/* ------ BOOKING FORM CONTROLS ------ */
+#seat-form > input,
+#seat-form > button { justify-self: start; width: min(100%, 24rem); }

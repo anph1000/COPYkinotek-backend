@@ -24,6 +24,11 @@ public class MovieRestController {
         return movieService.getMovies();
     }
 
+    @GetMapping("/now-playing")
+    public List<MovieDTO> getNowPlaying() {
+        return movieService.getNowPlayingMovies();
+    }
+
     @GetMapping("/{id}")
     public MovieDTO getMovieById(@PathVariable int id) {
         return movieService.getMovieById(id);

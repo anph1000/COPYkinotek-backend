@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret forestilling</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+<body>
+<header>
+    <nav aria-label="Hovednavigation">
+        <a class="logo" href="../index.html">Kinotek</a>
+    </nav>
+</header>
+<main>
+    <h1>Opret forestilling</h1>
+    <form id="showing-form">
+
+        <label for="inputMovie">Film</label>
+        <select id="inputMovie" name="movieId" required>
+            <option value="" disabled selected>Vælg film</option>
+        </select>
+
+        <label for="inputAuditorium">Sal</label>
+        <select id="inputAuditorium" name="auditoriumId" required>
+            <option value="" disabled selected>Vælg sal</option>
+        </select>
+
+        <label for="inputDateTime">Dato og tidspunkt</label>
+        <input
+                type="datetime-local"
+                id="inputDateTime"
+                name="dateTime"
+                required>
+
+        <output for="showing-form" id="form-status"></output>
+
+        <button type="submit">Opret forestilling</button>
+    </form>
+
+</main>
+<script type="module" src="../js/showing.js"></script>
+</body>
+</html>

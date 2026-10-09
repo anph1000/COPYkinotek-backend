@@ -15,30 +15,53 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    @Override
+    public Customer findCustomerByEmail(String email) {
+        validateEmailNotNull(email);
+        email = normalizeEmail(email);
+        validateEmailRegex(email);
+
+        return customerRepository.findCustomerByEmail(email);
+    }
 
     @Override
-    public Customer saveCustomerByEmail(String email) {
+    public boolean existsByEmail(String email) {
+        validateEmailNotNull(email);
+        email = normalizeEmail(email);
+        validateEmailRegex(email);
 
+        return customerRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Customer saveGuestByEmail(String email) {
+        validateEmailNotNull(email);
+        email = normalizeEmail(email);
+        validateEmailRegex(email);
+
+        Customer guest = new Customer();
+        guest.setEmail(email);
+        return customerRepository.save(guest);
+    }
+
+    private void validateEmailNotNull(String email) {
         //VALIDATE EMAIL IS NOT NULL
         if (email == null || email.isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email skal angives");
         }
 
+    }
+
+    private String normalizeEmail(String email) {
         //NORMALIZE
         String normalized = email.trim().toLowerCase();
+        return normalized;
+    }
 
+    private void validateEmailRegex(String email) {
         //VALIDATE FORMAT
-        if (!normalized.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+        if (!email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email har ugyldigt format");
         }
-
-        //CHECK IF EMAIL EXISTS
-        if (customerRepository.existsByEmail(normalized)) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Der findes allerede en kunde med denne email");
-        }
-
-        Customer guest = new Customer();
-        guest.setEmail(normalized);
-        return customerRepository.save(guest);
     }
 }

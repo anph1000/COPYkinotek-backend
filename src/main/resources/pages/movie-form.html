@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret film</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+<body>
+<main>
+    <h1>Opret film</h1>
+    <form id="formMovie">
+        <label for="title">Titel</label>
+        <input id="title" name="title" type="text" required>
+
+        <label for="description">Beskrivelse</label>
+        <textarea id="description" name="description" rows="5" cols="50" required></textarea>
+
+        <label for="duration">Længde (minutter)</label>
+        <input id="duration" name="duration" type="number" min="1" required>
+
+        <label for="genre">Genre (hold Ctrl/Cmd for flere)</label>
+        <select id="genre" name="genre" multiple required></select>
+
+        <label for="ageRating">Aldersgrænse</label>
+        <select id="ageRating" name="ageRating" required>
+            <option value="" disabled selected>Vælg…</option>
+        </select>
+
+        <label for="imdbRef">IMDb-link</label>
+        <input id="imdbRef" name="imdbRef" type="url" placeholder="https://www.imdb.com/title/...">
+
+        <label for="imageRef">Plakat (billed-URL)</label>
+        <input id="imageRef" name="imageRef" type="url">
+
+        <button type="submit">Opret film</button>
+    </form>
+    <p id="status" role="status"></p>
+</main>
+<script type="module" src="../js/movieForm.js"></script>
+</body>
+</html>

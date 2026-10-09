@@ -101,7 +101,6 @@ Hvis I skal dokumentere det i rapporten, kan I skrive, at koden blev testet med 
  */
 
 @Component
-@Profile({"dev", "prod"})
 public class InitData implements CommandLineRunner {
 
 
@@ -125,6 +124,28 @@ public class InitData implements CommandLineRunner {
     private static final List<LocalTime> LARGE_WEEKDAY = times("16:30", "19:30");
     private static final List<LocalTime> SMALL_WEEKEND = times("12:00", "15:00", "18:00", "21:00");
     private static final List<LocalTime> LARGE_WEEKEND = times("13:30", "16:30", "19:30");
+
+    /** Plakat-links fra MoviePosterDB */
+
+    private static final Map<String, String> POSTERS = Map.ofEntries(
+            Map.entry("Toy Story 5", "https://xl.movieposterdb.com/26_02/2026/29355505/xl_toy-story-5-movie-poster_04f71b00.jpg?v=2"),
+            Map.entry("Minions & Monsters", "https://xl.movieposterdb.com/26_02/0/32890033/xl_-movie-poster_3679e7b7.jpg?v=2"),
+            Map.entry("The Odyssey", "https://xl.movieposterdb.com/26_07/2026/33764258/xl_the-odyssey-movie-poster_81db230a.jpg?v=2"),
+            Map.entry("Spider-Man: Brand New Day", "https://xl.movieposterdb.com/26_05/2026/22084616/xl_spider-man-brand-new-day-movie-poster_ffdef880.jpeg?v=2"),
+            Map.entry("The Dog Stars", "https://xl.movieposterdb.com/26_04/2026/21285562/xl_the-dog-stars-movie-poster_75a462a0.jpg?v=2"),
+            Map.entry("Nøjsomheden", ""),
+            Map.entry("Practical Magic 2", "https://xl.movieposterdb.com/26_08/2026/32588798/xl_practical-magic-2-movie-poster_f1e8decb.jpg?v=2"),
+            Map.entry("Heart of the Beast", "https://xl.movieposterdb.com/26_06/0/7526136/xl_-movie-poster_322fa8eb.jpg?v=2"),
+            Map.entry("Offroad", ""),
+            Map.entry("Digger", "https://xl.movieposterdb.com/26_09/2026/31450459/xl_digger-2026-movie-poster_fc7ac599.jpg?v=2"),
+            Map.entry("Verity", "https://xl.movieposterdb.com/26_08/2026/32261958/xl_verity-2026-movie-poster_e8403814.jpg?v=2"),
+            Map.entry("The Social Reckoning", "https://xl.movieposterdb.com/26_07/0/37510326/xl_-movie-poster_6b8dfb0e.jpg?v=2"),
+            Map.entry("Klara and the Sun", "https://xl.movieposterdb.com/26_06/0/14371256/xl_-movie-poster_1ad8aa4f.jpg?v=2"),
+            Map.entry("The Cat in the Hat", "https://xl.movieposterdb.com/25_08/2026/2321555/xl_the-cat-in-the-hat-movie-poster_f851d7c8.jpg?v=2"),
+            Map.entry("The Hunger Games: Sunrise on the Reaping", "https://xl.movieposterdb.com/26_04/2026/32558705/xl_the-hunger-games-sunrise-on-the-reaping-movie-poster_815f7820.jpg?v=2"),
+            Map.entry("Avengers: Doomsday", "https://xl.movieposterdb.com/26_07/2026/21357150/xl_avengers-doomsday-movie-poster_c5c0d3b3.jpg?v=2"),
+            Map.entry("Svindler", "")
+    );
 
     /** Fast seed = samme "tilfældige" data hver gang appen starter. */
     private final Random random = new Random(42);
@@ -388,7 +409,7 @@ public class InitData implements CommandLineRunner {
             movie.setDuration(fd.duration());
             movie.setDescription(fd.description());
             movie.setImdbRef("https://www.imdb.com/title/" + fd.imdbId() + "/");
-            movie.setImageRef(null); // udfyldes senere
+            movie.setImageRef(POSTERS.get(fd.title()));
             movie.setAgeRating(ageRatings.get(fd.ageRating()));
 
             Set<Genre> movieGenres = new HashSet<>();

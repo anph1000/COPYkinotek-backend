@@ -10,5 +10,5 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
     List<Booking> findByShowingId(int showingId);
     boolean existsByShowingIdAndSeatId(int showingId, int seatId);
-
+    List<Booking> findByInvoiceId(int invoiceId);
 }
